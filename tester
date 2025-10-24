@@ -7,7 +7,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <style>
     * {
@@ -15,7 +14,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-  
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -24,7 +22,6 @@
       align-items: center;
       justify-content: center;
     }
-  
     /* Authentication Styles */
     .auth-container {
       background: white;
@@ -35,40 +32,33 @@
       max-width: 450px;
       margin: 20px;
     }
-  
     .auth-header {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       padding: 40px 30px;
       text-align: center;
     }
-  
     .auth-header h1 {
       font-size: 2.2em;
       margin-bottom: 10px;
       font-weight: 300;
     }
-  
     .auth-header p {
       opacity: 0.9;
       font-size: 1.1em;
     }
-  
     .auth-content {
       padding: 40px 30px;
     }
-  
     .form-group {
       margin-bottom: 25px;
     }
-  
     .form-group label {
       display: block;
       margin-bottom: 8px;
       font-weight: 500;
       color: #333;
     }
-  
     .form-group input, .form-group select {
       width: 100%;
       padding: 15px;
@@ -77,13 +67,11 @@
       font-size: 16px;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-  
     .form-group input:focus, .form-group select:focus {
       outline: none;
       border-color: #667eea;
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-  
     .btn {
       width: 100%;
       padding: 15px;
@@ -96,30 +84,25 @@
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-  
     .btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
     }
-  
     .btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
     }
-  
     .btn-secondary {
       background: #6c757d;
       margin-top: 10px;
     }
-  
-    .btn-code {
+    .btn-code, .btn-add-spec, .btn-add-value {
       width: auto;
       padding: 10px 20px;
       margin-left: 10px;
       font-size: 14px;
     }
-  
     .message {
       padding: 12px;
       border-radius: 8px;
@@ -127,51 +110,42 @@
       text-align: center;
       font-weight: 500;
     }
-  
     .message.error {
       background: #ffebee;
       color: #c62828;
       border: 1px solid #ffcdd2;
     }
-  
     .message.success {
       background: #e8f5e8;
       color: #2e7d32;
       border: 1px solid #c8e6c9;
     }
-  
     .message.info {
       background: #e3f2fd;
       color: #1976d2;
       border: 1px solid #bbdefb;
     }
-  
     .switch-link {
       text-align: center;
       margin-top: 25px;
       padding-top: 25px;
       border-top: 1px solid #e1e5e9;
     }
-  
     .switch-link a {
       color: #667eea;
       text-decoration: none;
       font-weight: 500;
     }
-  
     .switch-link a:hover {
       text-decoration: underline;
     }
-  
     .code-input-group {
       display: flex;
       align-items: center;
     }
-  
     .code-input-group input {
       flex: 1;
     }
-  
     .code-display, .product-display, .prompt-display {
       background: #e3f2fd;
       border: 2px solid #bbdefb;
@@ -185,16 +159,13 @@
       position: relative;
       display: none;
     }
-  
     .code-display.show, .product-display.show, .prompt-display.show {
       display: block;
     }
-  
     .code-display span {
       font-family: monospace;
       font-size: 20px;
     }
-  
     .code-display button {
       position: absolute;
       right: 10px;
@@ -208,15 +179,29 @@
       cursor: pointer;
       font-size: 14px;
     }
-  
     .code-display button:hover {
       background: #5a6cd1;
     }
-  
     .hidden {
       display: none !important;
     }
-  
+    .spec-group {
+      border: 1px solid #e1e5e9;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #f8f9fa;
+    }
+    .spec-group .form-group {
+      margin-bottom: 15px;
+    }
+    .value-group {
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+    .value-group input {
+      margin-bottom: 5px;
+    }
     /* Main App Styles */
     .main-app {
       display: none;
@@ -224,11 +209,9 @@
       width: 100%;
       background: #f8f9fa;
     }
-  
     .main-app.show {
       display: block;
     }
-  
     .app-header {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
@@ -238,23 +221,19 @@
       align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-  
     .app-header h1 {
       font-size: 1.8em;
       font-weight: 300;
     }
-  
     .nav-links a {
       color: white;
       margin-left: 20px;
       text-decoration: none;
       font-weight: 500;
     }
-  
     .nav-links a:hover {
       text-decoration: underline;
     }
-  
     .logout-btn {
       padding: 10px 20px;
       background: rgba(255,255,255,0.2);
@@ -264,17 +243,14 @@
       cursor: pointer;
       transition: background-color 0.2s;
     }
-  
     .logout-btn:hover {
       background: rgba(255,255,255,0.3);
     }
-  
     .app-content {
       max-width: 1200px;
       margin: 0 auto;
       padding: 30px 20px;
     }
-  
     .controls {
       background: white;
       border-radius: 15px;
@@ -282,7 +258,6 @@
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       margin-bottom: 30px;
     }
-  
     .row {
       display: flex;
       gap: 20px;
@@ -290,12 +265,10 @@
       margin-bottom: 25px;
       align-items: end;
     }
-  
     .row > * {
       flex: 1;
       min-width: 200px;
     }
-  
     .controls textarea, .controls input, .controls select {
       padding: 12px;
       font-size: 14px;
@@ -303,26 +276,22 @@
       border-radius: 8px;
       transition: border-color 0.3s;
     }
-  
     .controls textarea:focus, .controls input:focus, .controls select:focus {
       outline: none;
       border-color: #667eea;
     }
-  
     .controls textarea {
       width: 100%;
       height: 120px;
       resize: vertical;
       font-family: inherit;
     }
-  
     .controls label {
       display: block;
       margin-bottom: 8px;
       font-weight: 500;
       color: #333;
     }
-  
     .generate-btn {
       background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
       color: white;
@@ -336,30 +305,25 @@
       margin: 20px auto;
       display: block;
     }
-  
     .generate-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
     }
-  
     .generate-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
     }
-  
     .button-container {
       display: flex;
       justify-content: center;
       margin: 20px 0;
     }
-  
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
     }
-  
     .card {
       background: white;
       border-radius: 12px;
@@ -367,12 +331,10 @@
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-  
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
-  
     .card img {
       width: 100%;
       height: auto;
@@ -380,7 +342,6 @@
       border-radius: 8px;
       margin-bottom: 10px;
     }
-  
     .badge {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
@@ -391,55 +352,46 @@
       display: inline-block;
       margin-bottom: 10px;
     }
-  
     #status {
       margin: 15px 0;
       padding: 12px;
       border-radius: 8px;
       font-weight: 500;
     }
-  
     .status-working {
       background: #e3f2fd;
       color: #1976d2;
       border: 1px solid #bbdefb;
     }
-  
     .status-success {
       background: #e8f5e8;
       color: #2e7d32;
       border: 1px solid #c8e6c9;
     }
-  
     .status-error {
       background: #ffebee;
       color: #c62828;
       border: 1px solid #ffcdd2;
     }
-  
     .template-checkboxes label {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
     }
-  
     .template-checkboxes input[type="checkbox"] {
       margin-right: 10px;
     }
-  
     .image-feedback {
       display: flex;
       gap: 10px;
       justify-content: center;
       margin-top: 10px;
     }
-  
     .image-feedback button {
       padding: 10px 20px;
       border-radius: 8px;
       font-size: 14px;
     }
-  
     /* Product Warning */
     .product-warning {
       position: fixed;
@@ -455,52 +407,42 @@
       animation: pulse 2s infinite;
       max-width: 300px;
     }
-  
     .product-warning.show {
       display: block;
     }
-  
     .product-warning a {
       color: #fef3c7;
       text-decoration: underline;
     }
-  
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.8; }
     }
-  
     @media (max-width: 768px) {
       .row {
         flex-direction: column;
       }
-    
       .row > * {
         min-width: unset;
       }
-    
       .app-header {
         flex-direction: column;
         gap: 15px;
         text-align: center;
       }
-    
       .controls {
         padding: 20px;
       }
-    
       .grid {
         grid-template-columns: 1fr;
       }
-    
       .product-warning {
-        bottom: 80px; /* Move up to avoid overlap with mobile nav */
+        bottom: 80px;
         right: 10px;
         left: 10px;
         max-width: none;
         text-align: center;
       }
-    
       .button-container {
         flex-direction: column;
         align-items: center;
@@ -515,7 +457,6 @@
       <h1>🎨 AI Design Generator</h1>
       <p>Create stunning images with AI</p>
     </div>
-  
     <div class="auth-content">
       <!-- Login Form -->
       <form id="login-form">
@@ -533,7 +474,6 @@
         <button type="submit" class="btn">Sign In</button>
         <div id="login-msg" class="message" style="display: none;"></div>
       </form>
-    
       <!-- Registration Form -->
       <form id="register-form" class="hidden">
         <!-- Step 1: Email and Industry Code -->
@@ -551,7 +491,6 @@
           </div>
           <div id="register-msg-step1" class="message" style="display: none;"></div>
         </div>
-      
         <!-- Step 2: Verification -->
         <div id="register-step2" class="hidden">
           <div class="form-group">
@@ -562,7 +501,6 @@
           <button type="button" id="back-to-step1" class="btn btn-secondary">Back</button>
           <div id="register-msg-step2" class="message" style="display: none;"></div>
         </div>
-      
         <!-- Step 3: Complete Registration -->
         <div id="register-step3" class="hidden">
           <div class="form-group">
@@ -582,14 +520,12 @@
           <div id="register-msg-step3" class="message" style="display: none;"></div>
         </div>
       </form>
-    
       <div class="switch-link">
         <span id="switch-to-register">Don't have an account? <a href="#" onclick="showRegister(); return false;">Sign up</a></span>
         <span id="switch-to-login" class="hidden">Already have an account? <a href="#" onclick="showLogin(); return false;">Sign in</a></span>
       </div>
     </div>
   </div>
-  
   <!-- Main Application -->
   <div id="main-app" class="main-app">
     <div class="app-header">
@@ -603,7 +539,6 @@
         <button id="logout-btn" class="logout-btn">Logout</button>
       </div>
     </div>
-  
     <div class="app-content">
       <!-- Setup Page -->
       <div id="setup-page" class="controls hidden">
@@ -625,7 +560,6 @@
           <div id="setup-msg" class="message" style="display: none;"></div>
         </form>
       </div>
-    
       <!-- Account Page -->
       <div id="account-page" class="controls hidden">
         <h2>Your Account</h2>
@@ -649,27 +583,26 @@
         </form>
         <button id="edit-account-btn" class="btn">Edit Profile</button>
       </div>
-    
       <!-- Template Page -->
       <div id="template-page" class="controls">
         <h2>Generate Images</h2>
         <div id="product-display" class="product-display" style="display: none;"></div>
-        <div id="spec-selections" class="row"></div>
+        <div id="spec-selections" class="form-group"></div>
         <div id="prompt-display" class="prompt-display" style="display: none;"></div>
+        <h3>Select Template</h3>
+        <div class="template-checkboxes" id="template-checkboxes"></div>
         <div class="button-container">
           <button id="generate-images-btn" class="generate-btn">✨ Generate Images</button>
         </div>
         <div id="template-status" class="message" style="display: none;"></div>
         <div id="generated-images" class="grid"></div>
       </div>
-    
       <!-- Past Records Page -->
       <div id="records-page" class="controls hidden">
         <h2>Past Generation Records</h2>
         <div id="records-list" class="grid"></div>
         <div id="records-msg" class="message" style="display: none;"></div>
       </div>
-    
       <!-- Create Account Page (Master Only) -->
       <div id="create-account-page" class="controls hidden">
         <h2>Create Industry Account</h2>
@@ -699,6 +632,7 @@
                   <option value="colorScheme">Color Scheme</option>
                   <option value="style">Style</option>
                   <option value="tone">Tone</option>
+                  <option value="dimensions">Dimensions</option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -730,12 +664,10 @@
       </div>
     </div>
   </div>
-
   <!-- Product Warning -->
   <div id="product-warning" class="product-warning">
     <strong>⚠️ Product name not set.</strong> <a href="#" onclick="showPage('account-page'); return false;">Update now</a>
   </div>
-
   <script>
     // EmailJS Configuration
     const EMAILJS_SERVICE_ID = 'service_sq0910p';
@@ -754,7 +686,6 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
-    const storage = firebase.storage();
     // Global state
     let currentUser = null;
     let userRole = null;
@@ -843,6 +774,7 @@
                 <option value="colorScheme">Color Scheme</option>
                 <option value="style">Style</option>
                 <option value="tone">Tone</option>
+                <option value="dimensions">Dimensions</option>
                 <option value="other">Other</option>
               </select>
             </div>
@@ -958,6 +890,7 @@
             <option value="colorScheme">Color Scheme</option>
             <option value="style">Style</option>
             <option value="tone">Tone</option>
+            <option value="dimensions">Dimensions</option>
             <option value="other">Other</option>
           </select>
         </div>
@@ -1033,6 +966,8 @@
         currentUser = null;
         userRole = null;
         userTemplates = [];
+        userSpecs = null;
+        selectedSpecs = {};
         userProductName = '';
         userIndustryCode = null;
         showAuth();
@@ -1048,15 +983,27 @@
         showMessage('register-msg-step1', 'Please enter email and code.', 'error');
         return;
       }
-      const codeDoc = await db.collection('industryCodes').doc(industryCode).get();
-      if (!codeDoc.exists) {
-        showMessage('register-msg-step1', 'Invalid industry code.', 'error');
-        return;
-      }
-      window._registerCode = Math.floor(100000 + Math.random() * 900000).toString();
-      window._registerEmail = email;
-      window._industryCode = industryCode;
       try {
+        const codeDoc = await db.collection('industryCodes').doc(industryCode).get();
+        if (!codeDoc.exists) {
+          showMessage('register-msg-step1', 'Invalid industry code.', 'error');
+          return;
+        }
+        if (codeDoc.data().used) {
+          showMessage('register-msg-step1', 'This industry code has already been used.', 'error');
+          return;
+        }
+        const userQuery = await db.collection('users')
+          .where('industryCode', '==', industryCode)
+          .limit(1)
+          .get();
+        if (!userQuery.empty) {
+          showMessage('register-msg-step1', 'This industry code is already linked to an account.', 'error');
+          return;
+        }
+        window._registerCode = Math.floor(100000 + Math.random() * 900000).toString();
+        window._registerEmail = email;
+        window._industryCode = industryCode;
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           email: email,
           code: window._registerCode
@@ -1096,20 +1043,31 @@
         const result = await auth.createUserWithEmailAndPassword(window._registerEmail, password);
         currentUser = result.user;
         const codeDoc = await db.collection('industryCodes').doc(window._industryCode).get();
-        const { industry, template, productName } = codeDoc.data();
+        const { industryName, specifications, productName } = codeDoc.data();
         const finalProductName = productName || 'Default Product';
+        const style = specifications && specifications.style && specifications.style.length > 0 ? specifications.style[0] : 'default';
         await db.collection('users').doc(currentUser.uid).set({
           email: window._registerEmail,
           name: name,
           role: 'client',
           industryCode: window._industryCode,
-          industry: industry,
-          template: template,
+          industryName: industryName,
+          template: style,
+          specifications: specifications || {},
           productName: finalProductName,
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
+        await db.collection('industryCodes').doc(window._industryCode).update({
+          used: true,
+          usedBy: currentUser.uid
+        });
         userRole = 'client';
-        userTemplates = [template];
+        userTemplates = [style];
+        userSpecs = specifications || {};
+        selectedSpecs = Object.keys(userSpecs).reduce((acc, key) => {
+          acc[key] = userSpecs[key][0] || '';
+          return acc;
+        }, {});
         userProductName = finalProductName;
         userIndustryCode = window._industryCode;
         hideElement('setup-industry-group');
@@ -1137,7 +1095,7 @@
         const existingData = userDoc.exists ? userDoc.data() : {};
         await db.collection('users').doc(currentUser.uid).set({
           name: name,
-          industry: industry || existingData.industry || null,
+          industry: industry || existingData.industryName || null,
           industryCode: existingData.industryCode || null,
           productName: productName,
           setupCompleted: true
@@ -1160,11 +1118,11 @@
           const data = userDoc.data();
           userProductName = data.productName || 'Default Product';
           userIndustryCode = data.industryCode || '000000';
-          let industryDisplay = data.industry || 'Not specified';
+          let industryDisplay = data.industryName || 'Not specified';
           if (userIndustryCode && userIndustryCode !== '000000') {
             try {
               const codeDoc = await db.collection('industryCodes').doc(userIndustryCode).get();
-              industryDisplay = codeDoc.exists ? codeDoc.data().industry : 'Unknown';
+              industryDisplay = codeDoc.exists ? codeDoc.data().industryName : 'Unknown';
             } catch (err) {
               console.error('Error fetching industry code:', err);
             }
@@ -1203,7 +1161,7 @@
         const existingData = userDoc.exists ? userDoc.data() : {};
         await db.collection('users').doc(currentUser.uid).set({
           name: name,
-          industry: industry || existingData.industry || null,
+          industry: industry || existingData.industryName || null,
           industryCode: existingData.industryCode || null,
           productName: productName
         }, { merge: true });
@@ -1226,17 +1184,28 @@
         return;
       }
       try {
-        const userDoc = await db.collection('users').doc(currentUser.uid).get();
-        if (!userDoc.exists) {
-          showMessage('template-status', 'Profile not found. Please set up your profile.', 'error');
-          showPage('setup-page');
-          return;
+        if (userRole === 'master') {
+          userTemplates = ['modern', 'classic', 'minimalist'];
+          userSpecs = null;
+          selectedSpecs = {};
+        } else {
+          const userDoc = await db.collection('users').doc(currentUser.uid).get();
+          if (!userDoc.exists) {
+            showMessage('template-status', 'Profile not found. Please set up your profile.', 'error');
+            showPage('setup-page');
+            return;
+          }
+          const data = userDoc.data();
+          userTemplates = data.template ? [data.template] : [];
+          userSpecs = data.specifications || {};
+          selectedSpecs = Object.keys(userSpecs).reduce((acc, key) => {
+            acc[key] = userSpecs[key][0] || '';
+            return acc;
+          }, {});
+          userProductName = data.productName || 'Default Product';
+          userIndustryCode = data.industryCode || null;
         }
-        const data = userDoc.data();
-        userTemplates = data.template ? [data.template] : [];
-        userProductName = data.productName || 'Default Product';
-        userIndustryCode = data.industryCode || null;
-        console.log('Templates loaded:', { userTemplates, userProductName });
+        console.log('Templates loaded:', { userTemplates, userProductName, userSpecs, selectedSpecs });
         if (!userProductName || userProductName.trim().length < 2) {
           showMessage('template-status', 'Product name required. <a href="#" onclick="showPage(\'account-page\'); return false;">Update now</a>', 'error');
           showPage('account-page');
@@ -1249,6 +1218,26 @@
         `).join('');
         document.getElementById('product-display').textContent = `Product: ${userProductName}`;
         showElement('product-display');
+        const specSelections = document.getElementById('spec-selections');
+        specSelections.innerHTML = Object.entries(userSpecs).map(([key, values]) => `
+          <div class="form-group">
+            <label for="spec-select-${key}">${key.charAt(0).toUpperCase() + key.slice(1)}</label>
+            <select id="spec-select-${key}" data-spec-key="${key}">
+              ${values.map(value => `<option value="${value}">${value}</option>`).join('')}
+            </select>
+          </div>
+        `).join('');
+        document.querySelectorAll('#spec-selections select').forEach(select => {
+          select.addEventListener('change', function() {
+            selectedSpecs[this.dataset.specKey] = this.value;
+            updatePromptDisplay();
+          });
+        });
+        if (Object.keys(userSpecs).length > 0) {
+          showElement('spec-selections');
+        } else {
+          hideElement('spec-selections');
+        }
         updatePromptDisplay();
         document.querySelectorAll('#template-checkboxes input').forEach(checkbox => {
           checkbox.addEventListener('change', updatePromptDisplay);
@@ -1261,9 +1250,16 @@
     }
     function updatePromptDisplay() {
       const selectedTemplates = Array.from(document.querySelectorAll('#template-checkboxes input:checked')).map(input => input.value);
+      let extra = '';
+      if (userSpecs) {
+        extra = Object.entries(selectedSpecs)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(', ');
+        if (extra) extra = ', ' + extra;
+      }
       const promptDisplay = document.getElementById('prompt-display');
       promptDisplay.textContent = selectedTemplates.length > 0
-        ? `Generate a design for ${userProductName} in ${selectedTemplates.join(', ')} style`
+        ? `Generate a design for ${userProductName} in ${selectedTemplates.join(', ')} style${extra}`
         : 'Please select at least one template.';
       showElement('prompt-display');
       console.log('Prompt updated:', promptDisplay.textContent);
@@ -1304,7 +1300,14 @@
         showMessage('template-status', 'Maximum generation limit reached.', 'error');
         return;
       }
-      const prompt = `A beautiful product design for ${userProductName}, ${selectedTemplates.join(', ')} style, high quality, detailed, professional`;
+      let extra = '';
+      if (userSpecs) {
+        extra = Object.entries(selectedSpecs)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(', ');
+        if (extra) extra = ', ' + extra;
+      }
+      const prompt = `A beautiful product design for ${userProductName}, ${selectedTemplates.join(', ')} style${extra}, high quality, detailed, professional`;
       showMessage('template-status', 'Generating images with Pollen AI...', 'info');
       document.getElementById('generate-images-btn').disabled = true;
       try {
@@ -1323,6 +1326,7 @@
           userId: currentUser.uid,
           templates: selectedTemplates,
           productName: userProductName,
+          specifications: selectedSpecs,
           images: items.map(item => item.url),
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
@@ -1393,11 +1397,12 @@
         }
         generations.forEach(doc => {
           const data = doc.data();
+          const specsText = data.specifications ? Object.entries(data.specifications).map(([key, value]) => `${key}: ${value}`).join(', ') : '';
           data.images.forEach((url, idx) => {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-              <div class="badge">${data.templates.join(', ')} (${data.productName})</div>
+              <div class="badge">${data.templates.join(', ')} (${data.productName}${specsText ? ', ' + specsText : ''})</div>
               <img src="${url}" alt="Generated image" onload="this.style.opacity=1" style="opacity:0.5; transition:opacity 0.5s"/>
               <button onclick="downloadImage('${url}', ${idx})" class="btn">Download</button>
             `;
@@ -1476,6 +1481,7 @@
                 <option value="colorScheme">Color Scheme</option>
                 <option value="style">Style</option>
                 <option value="tone">Tone</option>
+                <option value="dimensions">Dimensions</option>
                 <option value="other">Other</option>
               </select>
             </div>
@@ -1533,7 +1539,7 @@
             document.getElementById('account-name').value = doc.data().name || '';
             document.getElementById('account-product').value = doc.data().productName || '';
             if (userRole === 'master') {
-              document.getElementById('account-industry').value = doc.data().industry || '';
+              document.getElementById('account-industry').value = doc.data().industryName || '';
             }
           }
         });
@@ -1547,7 +1553,6 @@
       document.getElementById('generate-images-btn').addEventListener('click', generateImages);
       // Create account (master)
       document.getElementById('create-account-form').addEventListener('submit', handleCreateAccount);
-      // Industry category change listener
       document.getElementById('industry-name').addEventListener('change', function() {
         if (this.value === 'other') {
           showElement('custom-industry-group');
@@ -1557,6 +1562,8 @@
           document.getElementById('custom-industry-name').removeAttribute('required');
         }
       });
+      document.getElementById('add-spec-btn').addEventListener('click', addSpecification);
+      setupSpecListeners(1);
       // Logout
       document.getElementById('logout-btn').addEventListener('click', handleLogout);
       // Initialize
