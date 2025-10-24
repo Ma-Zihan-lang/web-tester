@@ -22,7 +22,8 @@
       align-items: center;
       justify-content: center;
     }
-    /* Authentication Styles */
+
+    /* === AUTHENTICATION === */
     .auth-container {
       background: white;
       border-radius: 20px;
@@ -202,7 +203,8 @@
     .value-group input {
       margin-bottom: 5px;
     }
-    /* Main App Styles */
+
+    /* === MAIN APP === */
     .main-app {
       display: none;
       min-height: 100vh;
@@ -292,107 +294,100 @@
       font-weight: 500;
       color: #333;
     }
+
+    /* === FIXED BUTTON CONTAINER === */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin: 35px 0;
+      width: 100%;
+    }
     .generate-btn {
       background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
       color: white;
       border: none;
-      padding: 15px 30px;
-      font-size: 16px;
-      font-weight: 500;
-      border-radius: 8px;
+      padding: 16px 36px;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      margin: 20px auto;
-      display: block;
+      transition: all 0.2s;
+      box-shadow: 0 5px 15px rgba(17, 153, 142, 0.3);
     }
     .generate-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(17, 153, 142, 0.4);
     }
     .generate-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
     }
-    .button-container {
+
+    /* === NEW IMAGE LAYOUT === */
+    .generated-images-container {
       display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      flex-direction: column;
       gap: 20px;
+      margin-top: 30px;
     }
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-    .badge {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-    #status {
-      margin: 15px 0;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: 500;
-    }
-    .status-working {
-      background: #e3f2fd;
-      color: #1976d2;
-      border: 1px solid #bbdefb;
-    }
-    .status-success {
-      background: #e8f5e8;
-      color: #2e7d32;
-      border: 1px solid #c8e6c9;
-    }
-    .status-error {
-      background: #ffebee;
-      color: #c62828;
-      border: 1px solid #ffcdd2;
-    }
-    .template-checkboxes label {
+    .image-pair {
       display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .template-checkboxes input[type="checkbox"] {
-      margin-right: 10px;
-    }
-    .image-feedback {
-      display: flex;
-      gap: 10px;
+      gap: 20px;
       justify-content: center;
+      flex-wrap: wrap;
+    }
+    .image-pair img {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      opacity: 0.5;
+      transition: opacity 0.5s;
+    }
+    .image-pair img.loaded {
+      opacity: 1;
+    }
+    .image-pair div {
+      text-align: center;
+      font-weight: 500;
+      color: #333;
       margin-top: 10px;
     }
-    .image-feedback button {
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
+    .feedback-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-    /* Product Warning */
+    .feedback-buttons button {
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .feedback-buttons .btn-like-this {
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      color: white;
+    }
+    .feedback-buttons .btn-like-that {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .feedback-buttons .btn-both-bad {
+      background: #ef4444;
+      color: white;
+    }
+    .feedback-buttons button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* === PRODUCT WARNING === */
     .product-warning {
       position: fixed;
       bottom: 20px;
@@ -418,35 +413,25 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0.8; }
     }
+
+    /* === MOBILE FIXES === */
     @media (max-width: 768px) {
-      .row {
-        flex-direction: column;
-      }
-      .row > * {
-        min-width: unset;
-      }
-      .app-header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-      .controls {
-        padding: 20px;
-      }
-      .grid {
-        grid-template-columns: 1fr;
-      }
+      .row { flex-direction: column; }
+      .row > * { min-width: unset; }
+      .app-header { flex-direction: column; gap: 15px; text-align: center; }
+      .controls { padding: 20px; }
       .product-warning {
-        bottom: 80px;
+        bottom: 90px;
         right: 10px;
         left: 10px;
         max-width: none;
         text-align: center;
+        font-size: 14px;
       }
-      .button-container {
-        flex-direction: column;
-        align-items: center;
-      }
+      .button-container { margin: 30px 0; }
+      .generate-btn { width: auto; min-width: 220px; }
+      .feedback-buttons { flex-direction: column; }
+      .feedback-buttons button { width: 100%; max-width: 280px; }
     }
   </style>
 </head>
@@ -454,7 +439,7 @@
   <!-- Authentication Container -->
   <div id="auth-container" class="auth-container">
     <div class="auth-header">
-      <h1>🎨 AI Design Generator</h1>
+      <h1>AI Design Generator</h1>
       <p>Create stunning images with AI</p>
     </div>
     <div class="auth-content">
@@ -476,7 +461,7 @@
       </form>
       <!-- Registration Form -->
       <form id="register-form" class="hidden">
-        <!-- Step 1: Email and Industry Code -->
+        <!-- Step 1 -->
         <div id="register-step1">
           <div class="form-group">
             <label for="register-email">Email Address</label>
@@ -491,7 +476,7 @@
           </div>
           <div id="register-msg-step1" class="message" style="display: none;"></div>
         </div>
-        <!-- Step 2: Verification -->
+        <!-- Step 2 -->
         <div id="register-step2" class="hidden">
           <div class="form-group">
             <label for="register-code">Verification Code</label>
@@ -501,7 +486,7 @@
           <button type="button" id="back-to-step1" class="btn btn-secondary">Back</button>
           <div id="register-msg-step2" class="message" style="display: none;"></div>
         </div>
-        <!-- Step 3: Complete Registration -->
+        <!-- Step 3 -->
         <div id="register-step3" class="hidden">
           <div class="form-group">
             <label for="register-password">Password</label>
@@ -526,10 +511,11 @@
       </div>
     </div>
   </div>
+
   <!-- Main Application -->
   <div id="main-app" class="main-app">
     <div class="app-header">
-      <h1>🎨 AI Design Generator</h1>
+      <h1>AI Design Generator</h1>
       <div class="nav-links">
         <a href="#" onclick="showPage('setup-page'); return false;">Setup</a>
         <a href="#" onclick="showPage('account-page'); return false;">Account</a>
@@ -560,6 +546,7 @@
           <div id="setup-msg" class="message" style="display: none;"></div>
         </form>
       </div>
+
       <!-- Account Page -->
       <div id="account-page" class="controls hidden">
         <h2>Your Account</h2>
@@ -583,26 +570,52 @@
         </form>
         <button id="edit-account-btn" class="btn">Edit Profile</button>
       </div>
+
       <!-- Template Page -->
       <div id="template-page" class="controls">
         <h2>Generate Images</h2>
         <div id="product-display" class="product-display" style="display: none;"></div>
-        <div id="spec-selections" class="form-group"></div>
-        <div id="prompt-display" class="prompt-display" style="display: none;"></div>
-        <h3>Select Template</h3>
-        <div class="template-checkboxes" id="template-checkboxes"></div>
-        <div class="button-container">
-          <button id="generate-images-btn" class="generate-btn">✨ Generate Images</button>
+        <div class="row">
+          <div class="form-group">
+            <h3>Select Template</h3>
+            <div class="template-checkboxes" id="template-checkboxes"></div>
+          </div>
+          <div class="form-group">
+            <h3>Select Specifications</h3>
+            <div id="spec-selections"></div>
+          </div>
+          <div class="form-group">
+            <h3>Select AI Model</h3>
+            <select id="llm-select" required>
+              <option value="pollinations">Pollinations AI</option>
+              <option value="stability">Stability AI (SDXL)</option>
+              <option value="huggingface">Hugging Face (FLUX.1-dev)</option>
+            </select>
+          </div>
         </div>
+        <div id="prompt-display" class="prompt-display" style="display: none;"></div>
+
+        <!-- FIXED BUTTON -->
+        <div class="button-container">
+          <button id="generate-images-btn" class="generate-btn">Generate Images</button>
+        </div>
+
         <div id="template-status" class="message" style="display: none;"></div>
-        <div id="generated-images" class="grid"></div>
+
+        <!-- NEW IMAGE LAYOUT -->
+        <div id="generated-images" class="generated-images-container hidden">
+          <div class="image-pair" id="image-pair"></div>
+          <div class="feedback-buttons" id="feedback-buttons"></div>
+        </div>
       </div>
+
       <!-- Past Records Page -->
       <div id="records-page" class="controls hidden">
         <h2>Past Generation Records</h2>
         <div id="records-list" class="grid"></div>
         <div id="records-msg" class="message" style="display: none;"></div>
       </div>
+
       <!-- Create Account Page (Master Only) -->
       <div id="create-account-page" class="controls hidden">
         <h2>Create Industry Account</h2>
@@ -649,12 +662,13 @@
               <button type="button" class="btn btn-add-value" onclick="addValue(1)">Add Value</button>
             </div>
           </div>
-          <button type="button" id="add-spec-btn" class="btn btn-add-spec">Add Another Specification</button>
           <div class="form-group">
             <label for="industry-product">Product Name*</label>
             <input id="industry-product" type="text" required placeholder="Enter product name (e.g., lip gloss, phone)">
           </div>
+          <button type="button" id="add-spec-btn" class="btn btn-add-spec">Add Specification</button>
           <button type="submit" class="btn">Generate Industry Code</button>
+          <button type="button" id="reset-specs" class="btn btn-secondary">Reset</button>
           <div id="create-account-msg" class="message" style="display: none;"></div>
         </form>
         <div id="generated-code" class="code-display hidden">
@@ -664,16 +678,19 @@
       </div>
     </div>
   </div>
+
   <!-- Product Warning -->
   <div id="product-warning" class="product-warning">
-    <strong>⚠️ Product name not set.</strong> <a href="#" onclick="showPage('account-page'); return false;">Update now</a>
+    <strong>Warning: Product name not set.</strong> <a href="#" onclick="showPage('account-page'); return false;">Update now</a>
   </div>
+
   <script>
-    // EmailJS Configuration
+    // EmailJS
     const EMAILJS_SERVICE_ID = 'service_sq0910p';
     const EMAILJS_TEMPLATE_ID = 'template_6cykjb4';
     emailjs.init('DjaueAhkuIzk5gj2x');
-    // Firebase Configuration
+
+    // Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyC0P-rmy6ZiKCBnivZQBahKWaPcqg4nDnU",
       authDomain: "image-generator-c51e2.firebaseapp.com",
@@ -686,6 +703,7 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
+
     // Global state
     let currentUser = null;
     let userRole = null;
@@ -695,62 +713,26 @@
     let generationCount = 0;
     let userProductName = '';
     let userIndustryCode = null;
-    // UI Helper Functions
-    function showElement(id) {
-      const el = document.getElementById(id);
-      if (!el) {
-        console.error(`Element ${id} not found`);
-        return;
-      }
-      el.classList.remove('hidden');
-      el.style.display = 'block';
-      console.log(`Showing ${id}, display: ${el.style.display}`);
-    }
-    function hideElement(id) {
-      const el = document.getElementById(id);
-      if (!el) {
-        console.error(`Element ${id} not found`);
-        return;
-      }
-      el.classList.add('hidden');
-      el.style.display = 'none';
-      console.log(`Hiding ${id}, display: ${el.style.display}`);
-    }
+
+    // UI Helpers
+    function showElement(id) { const el = document.getElementById(id); if (el) { el.classList.remove('hidden'); el.style.display = 'block'; } }
+    function hideElement(id) { const el = document.getElementById(id); if (el) { el.classList.add('hidden'); el.style.display = 'none'; } }
     function showMessage(id, message, type = 'info') {
       const el = document.getElementById(id);
-      if (el) {
-        el.innerHTML = message;
-        el.className = `message ${type}`;
-        el.style.display = 'block';
-        console.log(`Message on ${id}: ${message} (${type})`);
-      }
+      if (el) { el.innerHTML = message; el.className = `message ${type}`; el.style.display = 'block'; }
     }
-    function hideMessage(id) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.style.display = 'none';
-        console.log(`Hiding message on ${id}`);
-      }
-    }
+    function hideMessage(id) { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
     function showLogin() {
-      showElement('login-form');
-      hideElement('register-form');
-      showElement('switch-to-register');
-      hideElement('switch-to-login');
+      showElement('login-form'); hideElement('register-form');
+      showElement('switch-to-register'); hideElement('switch-to-login');
       hideMessage('login-msg');
     }
     function showRegister() {
-      hideElement('login-form');
-      showElement('register-form');
-      hideElement('switch-to-register');
-      showElement('switch-to-login');
-      showElement('register-step1');
-      hideElement('register-step2');
-      hideElement('register-step3');
+      hideElement('login-form'); showElement('register-form');
+      hideElement('switch-to-register'); showElement('switch-to-login');
+      showElement('register-step1'); hideElement('register-step2'); hideElement('register-step3');
       document.getElementById('register-form').reset();
-      hideMessage('register-msg-step1');
-      hideMessage('register-msg-step2');
-      hideMessage('register-msg-step3');
+      hideMessage('register-msg-step1'); hideMessage('register-msg-step2'); hideMessage('register-msg-step3');
     }
     function showPage(pageId) {
       const pages = ['setup-page', 'account-page', 'template-page', 'records-page', 'create-account-page'];
@@ -760,7 +742,6 @@
       }
       pages.forEach(id => hideElement(id));
       showElement(pageId);
-      console.log(`Navigated to ${pageId}`);
       if (pageId === 'create-account-page') {
         hideElement('generated-code');
         document.getElementById('create-account-form').reset();
@@ -802,11 +783,8 @@
     function showMainApp() {
       document.getElementById('auth-container').style.display = 'none';
       document.getElementById('main-app').classList.add('show');
-      if (userRole === 'master') {
-        showElement('create-account-link');
-      } else {
-        hideElement('create-account-link');
-      }
+      if (userRole === 'master') showElement('create-account-link');
+      else hideElement('create-account-link');
       checkProductWarning();
       showPage((currentUser && (!currentUser.displayName || !userProductName || userProductName.trim().length < 2)) ? 'setup-page' : 'template-page');
     }
@@ -816,28 +794,27 @@
       hideElement('product-warning');
       showLogin();
     }
+
     // Product Warning
     function checkProductWarning() {
       const warning = document.getElementById('product-warning');
       if (userProductName && userProductName.trim().length >= 2) {
         hideElement('product-warning');
-        console.log('Product warning hidden, userProductName:', userProductName);
       } else {
         showElement('product-warning');
-        console.log('Product warning shown, userProductName:', userProductName);
       }
     }
+
     // Copy Industry Code
     function copyCode() {
       const code = document.getElementById('industry-code').textContent;
       navigator.clipboard.writeText(code).then(() => {
         showMessage('create-account-msg', 'Industry code copied!', 'success');
-        console.log(`Copied code: ${code}`);
-      }).catch(err => {
+      }).catch(() => {
         showMessage('create-account-msg', 'Failed to copy code.', 'error');
-        console.error('Copy error:', err);
       });
     }
+
     // Specification Management
     function setupSpecListeners(specId) {
       const typeSelect = document.getElementById(`spec-${specId}-type`);
@@ -909,7 +886,8 @@
       container.appendChild(specGroup);
       setupSpecListeners(specId);
     }
-    // Authentication Functions
+
+    // Authentication
     async function handleLogin(email, password) {
       try {
         showMessage('login-msg', 'Signing in...', 'info');
@@ -927,7 +905,6 @@
           errorMessage = 'No account found with this email.';
         }
         showMessage('login-msg', errorMessage, 'error');
-        console.error('Login error:', err);
       }
     }
     async function resetPassword() {
@@ -941,7 +918,6 @@
         showMessage('login-msg', 'Reset email sent! Check your inbox.', 'success');
       } catch (err) {
         showMessage('login-msg', 'Error: ' + err.message, 'error');
-        console.error('Reset password error:', err);
       }
     }
     async function checkUserRole() {
@@ -959,7 +935,6 @@
         showElement('setup-industry-group');
         showElement('account-industry-group');
       }
-      console.log('User role:', userRole, 'Industry code:', userIndustryCode);
     }
     function handleLogout() {
       auth.signOut().then(() => {
@@ -971,11 +946,10 @@
         userProductName = '';
         userIndustryCode = null;
         showAuth();
-      }).catch(err => {
-        console.error('Logout error:', err);
       });
     }
-    // Registration Functions
+
+    // Registration
     async function sendVerificationCode() {
       const email = document.getElementById('register-email').value.trim();
       const industryCode = document.getElementById('register-industry-code').value.trim();
@@ -1013,7 +987,6 @@
         showElement('register-step2');
       } catch (err) {
         showMessage('register-msg-step1', 'Failed to send email: ' + err.message, 'error');
-        console.error('Email send error:', err);
       }
     }
     function verifyCode() {
@@ -1076,10 +1049,10 @@
         setTimeout(() => showMainApp(), 1000);
       } catch (err) {
         showMessage('register-msg-step3', 'Error: ' + err.message, 'error');
-        console.error('Registration error:', err);
       }
     }
-    // Setup Page Functions
+
+    // Setup Page
     async function handleSetup(e) {
       e.preventDefault();
       const name = document.getElementById('setup-name').value.trim();
@@ -1107,10 +1080,10 @@
         setTimeout(() => showPage('template-page'), 1000);
       } catch (err) {
         showMessage('setup-msg', 'Error: ' + err.message, 'error');
-        console.error('Setup error:', err);
       }
     }
-    // Account Page Functions
+
+    // Account Page
     async function loadAccountInfo() {
       try {
         const userDoc = await db.collection('users').doc(currentUser.uid).get();
@@ -1135,7 +1108,6 @@
             <p><strong>Product Name:</strong> ${userProductName}</p>
           `;
           checkProductWarning();
-          console.log('Account info loaded:', { userProductName, userIndustryCode });
         } else {
           userProductName = '';
           showMessage('account-msg', 'Profile not found. Please set up your profile.', 'error');
@@ -1143,7 +1115,6 @@
         }
       } catch (err) {
         showMessage('account-msg', 'Error loading account: ' + err.message, 'error');
-        console.error('Load account error:', err);
       }
     }
     async function handleAccountUpdate(e) {
@@ -1174,10 +1145,285 @@
         loadAccountInfo();
       } catch (err) {
         showMessage('account-msg', 'Error: ' + err.message, 'error');
-        console.error('Update account error:', err);
       }
     }
-    // Template Page Functions
+
+    // Image Generation Functions
+    function sanitizePrompt(prompt) {
+      return prompt.replace(/[\n\r\t"']/g, ' ').trim();
+    }
+
+    async function generateWithPollinations(prompt, seed, width = 768, height = 1024, retries = 3) {
+      try {
+        const sanitizedPrompt = sanitizePrompt(prompt);
+        if (!sanitizedPrompt) throw new Error('Prompt is empty or invalid');
+        const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(sanitizedPrompt)}?width=${width}&height=${height}&seed=${seed}`;
+        console.log('Pollinations AI URL:', url);
+        const response = await fetch(url, { method: 'GET', mode: 'cors' });
+        if (!response.ok) {
+          if (response.status === 502 && retries > 0) {
+            console.warn(`Retrying Pollinations AI request (${retries} attempts left)`);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            return generateWithPollinations(prompt, seed, width, height, retries - 1);
+          }
+          throw new Error(`Pollinations AI returned ${response.status}`);
+        }
+        const blob = await response.blob();
+        return { provider: 'Pollinations AI', url: URL.createObjectURL(blob) };
+      } catch (err) {
+        console.error('Pollinations AI error:', err);
+        return null;
+      }
+    }
+
+    async function generateWithStability(prompt, seed, width = 1024, height = 1024) {
+      try {
+        const sanitizedPrompt = sanitizePrompt(prompt);
+        if (!sanitizedPrompt) throw new Error('Prompt is empty or invalid');
+        const url = '/api/stability'; // Proxy endpoint
+        const headers = {
+          "Content-Type": "application/json"
+        };
+        const payload = {
+          text_prompts: [{ text: sanitizedPrompt }],
+          cfg_scale: 7,
+          width: width,
+          height: height,
+          samples: 1,
+          seed: seed
+        };
+        if (![512, 768, 1024].includes(width) || ![512, 768, 1024].includes(height)) {
+          throw new Error('Invalid width or height for Stability AI');
+        }
+        if (payload.cfg_scale < 0 || payload.cfg_scale > 35) {
+          throw new Error('Invalid cfg_scale for Stability AI');
+        }
+        console.log('Stability AI Payload:', payload);
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Stability AI error: ${response.status} - ${errorText}`);
+        }
+        const data = await response.json();
+        const images = data.artifacts.map(item => ({
+          provider: 'Stability AI',
+          url: `data:image/png;base64,${item.base64}`
+        }));
+        return images[0];
+      } catch (err) {
+        console.error('Stability AI error:', err);
+        return null;
+      }
+    }
+
+    async function generateWithHuggingFace(prompt, seed, width = 512, height = 512) {
+      try {
+        const sanitizedPrompt = sanitizePrompt(prompt);
+        if (!sanitizedPrompt) throw new Error('Prompt is empty or invalid');
+        const url = '/api/huggingface'; // Proxy endpoint
+        const headers = {
+          "Content-Type": "application/json"
+        };
+        const payload = {
+          inputs: sanitizedPrompt,
+          parameters: {
+            negative_prompt: "low quality, blurry, distorted",
+            guidance_scale: 7.5,
+            num_inference_steps: 50,
+            width: width,
+            height: height,
+            seed: seed
+          }
+        };
+        if (![512, 1024].includes(width) || ![512, 1024].includes(height)) {
+          throw new Error('Invalid width or height for Hugging Face');
+        }
+        if (payload.parameters.guidance_scale < 1 || payload.parameters.guidance_scale > 20) {
+          throw new Error('Invalid guidance_scale for Hugging Face');
+        }
+        if (payload.parameters.num_inference_steps < 1 || payload.parameters.num_inference_steps > 100) {
+          throw new Error('Invalid num_inference_steps for Hugging Face');
+        }
+        console.log('Hugging Face Payload:', payload);
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Hugging Face error: ${response.status} - ${errorText}`);
+        }
+        const blob = await response.blob();
+        return { provider: 'Hugging Face', url: URL.createObjectURL(blob) };
+      } catch (err) {
+        console.error('Hugging Face error:', err);
+        return null;
+      }
+    }
+
+    // Image Generation
+    async function generateImages() {
+      if (!currentUser) {
+        showMessage('template-status', 'Please sign in.', 'error');
+        return;
+      }
+      if (!userProductName || userProductName.trim().length < 2) {
+        showMessage('template-status', 'Product name required. <a href="#" onclick="showPage(\'account-page\'); return false;">Update now</a>', 'error');
+        showPage('account-page');
+        return;
+      }
+      const selectedTemplates = Array.from(document.querySelectorAll('#template-checkboxes input:checked')).map(input => input.value);
+      if (selectedTemplates.length === 0) {
+        showMessage('template-status', 'Please select at least one template.', 'error');
+        return;
+      }
+      if (generationCount >= 20) {
+        showMessage('template-status', 'Maximum generation limit reached.', 'error');
+        return;
+      }
+      const llmSelect = document.getElementById('llm-select').value;
+      let extra = '';
+      if (userSpecs) {
+        extra = Object.entries(selectedSpecs)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(', ');
+        if (extra) extra = ', ' + extra;
+      }
+      const basePrompt = `A beautiful product design for ${userProductName}, ${selectedTemplates.join(', ')} style${extra}, high quality, detailed, professional`;
+      showMessage('template-status', `Generating images with ${llmSelect}...`, 'info');
+      document.getElementById('generate-images-btn').disabled = true;
+
+      const generators = {
+        pollinations: generateWithPollinations,
+        stability: generateWithStability,
+        huggingface: generateWithHuggingFace
+      };
+      const dimensions = {
+        pollinations: { width: 768, height: 1024 },
+        stability: { width: 1024, height: 1024 },
+        huggingface: { width: 512, height: 512 }
+      };
+      const llms = ['pollinations', 'stability', 'huggingface'];
+      const selectedIndex = llms.indexOf(llmSelect);
+      const orderedLLMs = [llmSelect, ...llms.filter(llm => llm !== llmSelect)];
+
+      let images = [];
+      let attempts = 0;
+      const maxAttempts = 6;
+      const seed = Date.now();
+
+      while (images.length < 2 && attempts < maxAttempts && generationCount < 20) {
+        const llm = orderedLLMs[attempts % orderedLLMs.length];
+        const prompt = images.length === 0 ? basePrompt : `${basePrompt} (variation ${images.length + 1})`;
+        const { width, height } = dimensions[llm];
+        try {
+          const image = await generators[llm](prompt, seed + attempts, width, height);
+          if (image) {
+            images.push(image);
+            generationCount++;
+          } else {
+            console.warn(`No image generated by ${llm}, trying next provider`);
+          }
+        } catch (err) {
+          console.error(`Error with ${llm}:`, err);
+        }
+        attempts++;
+      }
+
+      if (images.length === 1 && attempts < maxAttempts && generationCount < 20) {
+        const nextLLM = orderedLLMs[attempts % orderedLLMs.length];
+        const prompt = `${basePrompt} (variation 2)`;
+        const { width, height } = dimensions[nextLLM];
+        try {
+          const image = await generators[nextLLM](prompt, seed + attempts, width, height);
+          if (image) {
+            images.push(image);
+            generationCount++;
+          }
+        } catch (err) {
+          console.error(`Error with ${nextLLM}:`, err);
+        }
+      }
+
+      try {
+        if (images.length === 2) {
+          renderImages(images);
+          const generationRef = db.collection('generations').doc();
+          await generationRef.set({
+            userId: currentUser.uid,
+            templates: selectedTemplates,
+            productName: userProductName,
+            specifications: selectedSpecs,
+            images: images.map(item => ({ provider: item.provider, url: item.url })),
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+          const userGenerations = await db.collection('generations')
+            .where('userId', '==', currentUser.uid)
+            .orderBy('createdAt', 'desc')
+            .get();
+          userGenerations.docs.slice(3).forEach(doc => doc.ref.delete());
+          showMessage('template-status', 'Images generated successfully!', 'success');
+        } else {
+          const failedProviders = orderedLLMs.slice(0, attempts).join(', ');
+          showMessage('template-status', `Failed to generate images with ${failedProviders}. Please try again or select a different model.`, 'error');
+        }
+      } catch (err) {
+        showMessage('template-status', 'Error saving generation: ' + err.message, 'error');
+      } finally {
+        document.getElementById('generate-images-btn').disabled = false;
+      }
+    }
+
+    // NEW renderImages FUNCTION
+    function renderImages(items) {
+      const container = document.getElementById('generated-images');
+      const pairDiv = document.getElementById('image-pair');
+      const feedbackDiv = document.getElementById('feedback-buttons');
+
+      pairDiv.innerHTML = '';
+      feedbackDiv.innerHTML = '';
+      container.classList.remove('hidden');
+
+      items.forEach((item, idx) => {
+        const imgContainer = document.createElement('div');
+        const img = document.createElement('img');
+        img.src = item.url;
+        img.alt = `Generated image ${idx + 1} from ${item.provider}`;
+        img.onload = () => img.classList.add('loaded');
+        imgContainer.appendChild(img);
+        const providerLabel = document.createElement('div');
+        providerLabel.textContent = item.provider;
+        imgContainer.appendChild(providerLabel);
+        pairDiv.appendChild(imgContainer);
+      });
+
+      feedbackDiv.innerHTML = `
+        <button class="btn-like-this" onclick="downloadImage('${items[0].url}', 0)">I like this (${items[0].provider})</button>
+        <button class="btn-like-that" onclick="downloadImage('${items[1].url}', 1)">I like that (${items[1].provider})</button>
+        <button class="btn-both-bad" onclick="handleBothBad()">Both bad</button>
+      `;
+    }
+
+    function downloadImage(url, idx) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `generated-image-${idx + 1}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showMessage('template-status', `Image ${idx + 1} downloaded!`, 'success');
+    }
+    function handleBothBad() {
+      generationCount++;
+      generateImages();
+    }
+
+    // Template Page
     async function loadTemplates() {
       if (!currentUser) {
         showMessage('template-status', 'Please sign in.', 'error');
@@ -1205,7 +1451,6 @@
           userProductName = data.productName || 'Default Product';
           userIndustryCode = data.industryCode || null;
         }
-        console.log('Templates loaded:', { userTemplates, userProductName, userSpecs, selectedSpecs });
         if (!userProductName || userProductName.trim().length < 2) {
           showMessage('template-status', 'Product name required. <a href="#" onclick="showPage(\'account-page\'); return false;">Update now</a>', 'error');
           showPage('account-page');
@@ -1245,7 +1490,6 @@
         checkProductWarning();
       } catch (err) {
         showMessage('template-status', 'Error loading templates: ' + err.message, 'error');
-        console.error('Load templates error:', err);
       }
     }
     function updatePromptDisplay() {
@@ -1262,126 +1506,9 @@
         ? `Generate a design for ${userProductName} in ${selectedTemplates.join(', ')} style${extra}`
         : 'Please select at least one template.';
       showElement('prompt-display');
-      console.log('Prompt updated:', promptDisplay.textContent);
     }
-    async function fetchImageUrl(prompt, seed) {
-      try {
-        const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=768&height=1024&seed=${seed}`;
-        console.log('Fetching image for prompt:', prompt, 'URL:', url);
-        const response = await fetch(url, { method: 'GET', mode: 'cors' });
-        if (!response.ok) {
-          throw new Error(`Pollen AI returned ${response.status}: ${response.statusText}`);
-        }
-        const blob = await response.blob();
-        const imageUrl = URL.createObjectURL(blob);
-        console.log('Image fetched successfully:', imageUrl);
-        return imageUrl;
-      } catch (err) {
-        console.error('Image fetch error:', err.message);
-        throw err;
-      }
-    }
-    async function generateImages() {
-      if (!currentUser) {
-        showMessage('template-status', 'Please sign in.', 'error');
-        return;
-      }
-      if (!userProductName || userProductName.trim().length < 2) {
-        showMessage('template-status', 'Product name required. <a href="#" onclick="showPage(\'account-page\'); return false;">Update now</a>', 'error');
-        showPage('account-page');
-        return;
-      }
-      const selectedTemplates = Array.from(document.querySelectorAll('#template-checkboxes input:checked')).map(input => input.value);
-      if (selectedTemplates.length === 0) {
-        showMessage('template-status', 'Please select at least one template.', 'error');
-        return;
-      }
-      if (generationCount >= 20) {
-        showMessage('template-status', 'Maximum generation limit reached.', 'error');
-        return;
-      }
-      let extra = '';
-      if (userSpecs) {
-        extra = Object.entries(selectedSpecs)
-          .map(([key, value]) => `${key}: ${value}`)
-          .join(', ');
-        if (extra) extra = ', ' + extra;
-      }
-      const prompt = `A beautiful product design for ${userProductName}, ${selectedTemplates.join(', ')} style${extra}, high quality, detailed, professional`;
-      showMessage('template-status', 'Generating images with Pollen AI...', 'info');
-      document.getElementById('generate-images-btn').disabled = true;
-      try {
-        const urls = await Promise.all([
-          fetchImageUrl(prompt, Date.now()),
-          fetchImageUrl(prompt + ' (variation 2)', Date.now() + 1)
-        ]);
-        const items = urls.map(url => ({ provider: 'Pollen AI', url }));
-        if (items.some(item => !item.url)) {
-          throw new Error('One or more images failed to generate.');
-        }
-        renderImages(items);
-        generationCount++;
-        const generationRef = db.collection('generations').doc();
-        await generationRef.set({
-          userId: currentUser.uid,
-          templates: selectedTemplates,
-          productName: userProductName,
-          specifications: selectedSpecs,
-          images: items.map(item => item.url),
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        const userGenerations = await db.collection('generations')
-          .where('userId', '==', currentUser.uid)
-          .orderBy('createdAt', 'desc')
-          .get();
-        userGenerations.docs.slice(3).forEach(doc => doc.ref.delete());
-        showMessage('template-status', 'Images generated successfully!', 'success');
-      } catch (err) {
-        let errorMessage = 'Error generating images. Please try again.';
-        if (err.message.includes('Pollen AI returned')) {
-          errorMessage = 'Image generation service unavailable. Try again later.';
-        } else if (err.message.includes('Failed to fetch')) {
-          errorMessage = 'Network error: Unable to reach Pollen AI. Check your connection.';
-        } else if (err.message.includes('Permission denied')) {
-          errorMessage = 'Firestore permission error: Check your Firebase rules.';
-        } else if (err.message.includes('requires an index')) {
-          errorMessage = 'Database configuration needed. Set up the required Firestore index.';
-        }
-        showMessage('template-status', errorMessage, 'error');
-        console.error('Generation error:', err.message, 'Stack:', err.stack);
-      } finally {
-        document.getElementById('generate-images-btn').disabled = false;
-      }
-    }
-    function renderImages(items) {
-      const container = document.getElementById('generated-images');
-      container.innerHTML = items.map((item, idx) => `
-        <div class="card">
-          <div class="badge">${item.provider}</div>
-          <img src="${item.url}" alt="Generated image ${idx + 1}" onload="this.style.opacity=1" style="opacity:0.5; transition:opacity 0.5s"/>
-          <div class="image-feedback">
-            <button onclick="downloadImage('${item.url}', ${idx})">I like this</button>
-            ${idx === 0 && items[1] ? `<button onclick="downloadImage('${items[1].url}', 1)">I like that</button>` : ''}
-            ${idx === 0 ? `<button onclick="handleBothBad()">Both bad</button>` : ''}
-          </div>
-        </div>
-      `).join('');
-      console.log('Rendered images:', items);
-    }
-    function downloadImage(url, idx) {
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `generated-image-${idx + 1}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      showMessage('template-status', `Image ${idx + 1} downloaded!`, 'success');
-    }
-    function handleBothBad() {
-      generationCount++;
-      generateImages();
-    }
-    // Past Records Functions
+
+    // Past Records
     async function loadRecords() {
       const recordsList = document.getElementById('records-list');
       recordsList.innerHTML = '';
@@ -1398,13 +1525,13 @@
         generations.forEach(doc => {
           const data = doc.data();
           const specsText = data.specifications ? Object.entries(data.specifications).map(([key, value]) => `${key}: ${value}`).join(', ') : '';
-          data.images.forEach((url, idx) => {
+          data.images.forEach((item, idx) => {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-              <div class="badge">${data.templates.join(', ')} (${data.productName}${specsText ? ', ' + specsText : ''})</div>
-              <img src="${url}" alt="Generated image" onload="this.style.opacity=1" style="opacity:0.5; transition:opacity 0.5s"/>
-              <button onclick="downloadImage('${url}', ${idx})" class="btn">Download</button>
+              <div class="badge">${data.templates.join(', ')} (${data.productName}${specsText ? ', ' + specsText : ''}) - ${item.provider}</div>
+              <img src="${item.url}" alt="Generated image" onload="this.style.opacity=1" style="opacity:0.5; transition:opacity 0.5s"/>
+              <button onclick="downloadImage('${item.url}', ${idx})" class="btn">Download</button>
             `;
             recordsList.appendChild(card);
           });
@@ -1412,10 +1539,10 @@
         hideMessage('records-msg');
       } catch (err) {
         showMessage('records-msg', 'Error loading records: ' + err.message, 'error');
-        console.error('Load records error:', err);
       }
     }
-    // Create Account (Master) Functions
+
+    // Create Account (Master)
     async function handleCreateAccount(e) {
       e.preventDefault();
       if (userRole !== 'master') {
@@ -1501,19 +1628,17 @@
         setupSpecListeners(1);
       } catch (err) {
         showMessage('create-account-msg', 'Error: ' + err.message, 'error');
-        console.error('Create account error:', err);
       }
     }
+
     // Event Listeners
     document.addEventListener('DOMContentLoaded', function() {
-      // Login form
       document.getElementById('login-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
         handleLogin(email, password);
       });
-      // Registration events
       document.getElementById('send-code-btn').addEventListener('click', sendVerificationCode);
       document.getElementById('verify-code-btn').addEventListener('click', verifyCode);
       document.getElementById('register-form').addEventListener('submit', function(e) {
@@ -1528,9 +1653,7 @@
         hideElement('register-step3');
         showElement('register-step2');
       });
-      // Setup form
       document.getElementById('setup-form').addEventListener('submit', handleSetup);
-      // Account form
       document.getElementById('edit-account-btn').addEventListener('click', function() {
         showElement('account-form');
         hideElement('edit-account-btn');
@@ -1549,9 +1672,7 @@
         hideElement('account-form');
         showElement('edit-account-btn');
       });
-      // Template generation
       document.getElementById('generate-images-btn').addEventListener('click', generateImages);
-      // Create account (master)
       document.getElementById('create-account-form').addEventListener('submit', handleCreateAccount);
       document.getElementById('industry-name').addEventListener('change', function() {
         if (this.value === 'other') {
@@ -1562,11 +1683,14 @@
           document.getElementById('custom-industry-name').removeAttribute('required');
         }
       });
-      document.getElementById('add-spec-btn').addEventListener('click', addSpecification);
+      const addSpecBtn = document.getElementById('add-spec-btn');
+      if (addSpecBtn) {
+        addSpecBtn.addEventListener('click', addSpecification);
+      } else {
+        console.warn('Element with ID "add-spec-btn" not found.');
+      }
       setupSpecListeners(1);
-      // Logout
       document.getElementById('logout-btn').addEventListener('click', handleLogout);
-      // Initialize
       auth.onAuthStateChanged(user => {
         if (user) {
           currentUser = user;
